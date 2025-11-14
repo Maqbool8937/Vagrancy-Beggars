@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
-import 'package:vagrancy_beggars/view/screens/confirmation_screen.dart';
-import 'package:vagrancy_beggars/view/screens/final_step_screen.dart';
-import 'package:vagrancy_beggars/view/screens/personal_information_screen.dart';
-import 'package:vagrancy_beggars/view/screens/photo_location_screen.dart';
-import 'package:vagrancy_beggars/view/screens/settings_logout.dart';
+import 'package:vagrancy_beggars/controllers/getxController/theme%20_controller.dart';
 
-void main() async {
-  WidgetsFlutterBinding();
+import 'package:vagrancy_beggars/view/screens/splash_screen.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Get.put(ThemeController()); // register controller
+
   runApp(const MyApp());
 }
 
@@ -18,15 +17,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size mediaQuerySize = MediaQuery.of(context).size;
+    final themeController = Get.find<ThemeController>();
 
-    return ScreenUtilInit(
-      designSize: Size(mediaQuerySize.width, mediaQuerySize.height),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      child: GetMaterialApp(
+    return Obx(
+      () => GetMaterialApp(
+        title: 'Theme Demo',
         debugShowCheckedModeBanner: false,
-        home: SettingsLogout(),
+        themeMode: themeController.theme,
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
+        home: SplashScreen(),
       ),
     );
   }

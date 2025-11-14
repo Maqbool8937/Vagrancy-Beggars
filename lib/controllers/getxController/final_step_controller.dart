@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vagrancy_beggars/view/screens/confirmation_screen.dart';
 
 class FinalStepController extends GetxController {
   final notesController = TextEditingController();
@@ -30,6 +31,7 @@ class FinalStepController extends GetxController {
     );
 
     // Navigate or reset if needed
+    Get.to(() => ConfirmationScreen());
     // Get.offAllNamed('/home');
   }
 

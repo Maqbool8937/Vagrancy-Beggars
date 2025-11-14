@@ -195,14 +195,15 @@ class PhotoLocationScreen extends StatelessWidget {
                 "Drag the pin to adjust your exact location",
                 style: TextStyle(color: Colors.grey),
               ),
-              const Spacer(),
+
+              const SizedBox(height: 40),
 
               // Continue button
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1A0033),
+                    backgroundColor: const Color(0xFF140D44),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -222,6 +223,7 @@ class PhotoLocationScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 10),
             ],
           ),
         ),

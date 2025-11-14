@@ -1,111 +1,150 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vagrancy_beggars/controllers/getxController/theme%20_controller.dart';
 
 class SettingsLogout extends StatelessWidget {
   const SettingsLogout({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final mediaquery = MediaQuery.of(context).size;
+    final themeController = Get.find<ThemeController>();
+    final size = MediaQuery.of(context).size;
+
+    final isDark = themeController.isDark.value;
+    final bg = Theme.of(context).scaffoldBackgroundColor;
+    final cardColor = Theme.of(context).cardColor;
+    final textColor = Theme.of(context).textTheme.bodyMedium!.color;
+
     return Scaffold(
-      // backgroundColor: ,
-      body: Column(
-        children: [
-          Container(
-            width: mediaquery.width,
-            height: mediaquery.height * 0.35,
-
-            decoration: BoxDecoration(color: Color(0xff1F2937)),
-            child: Column(
-              children: [
-                SizedBox(height: mediaquery.height * 0.1),
-
-                CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  radius: 40,
-                  child: Icon(Icons.person),
-                ),
-                SizedBox(height: mediaquery.height * 0.03),
-                Text(
-                  'Dr.Usman Anwar (IG Police)',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                SizedBox(height: mediaquery.height * 0.01),
-
-                Text(
-                  'ID: 56745',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: mediaquery.height * 0.05),
-
-          Container(
-            height: mediaquery.height * 0.3,
-            width: mediaquery.width * 0.9,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: Column(
-              children: [
-                ListTile(
-                  leading: Icon(Icons.lock, color: Colors.blueAccent),
-                  title: Text(
-                    'Change Password',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+      body: Obx(() {
+        return Column(
+          children: [
+            // TOP BANNER
+            Container(
+              width: size.width,
+              height: size.height * 0.35,
+              decoration: BoxDecoration(
+                color: isDark ? Colors.grey.shade900 : const Color(0xff1F2937),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    radius: 40,
+                    child: Icon(Icons.person, size: 40),
                   ),
-                  trailing: Icon(Icons.arrow_forward_ios_rounded),
-                ),
-                Divider(),
-                ListTile(
-                  leading: Icon(Icons.language, color: Colors.blueAccent),
-                  title: Text(
-                    'Langauge',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Dr. Usman Anwar (IG Police)',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  trailing: Icon(Icons.arrow_forward_ios_rounded),
-                ),
-                Divider(),
-                ListTile(
-                  leading: Icon(
-                    Icons.nightlight_outlined,
-                    color: Colors.blueAccent,
+                  const SizedBox(height: 6),
+                  const Text(
+                    'ID: 56745',
+                    style: TextStyle(color: Colors.white70, fontSize: 18),
                   ),
-                  title: Text(
-                    'Dark Mode',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
-                  trailing: Icon(Icons.toggle_off_outlined, size: 40),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: mediaquery.height * 0.03),
-          Container(
-            height: mediaquery.height * 0.1,
-            width: mediaquery.width * 0.9,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: Center(
-              child: ListTile(
-                leading: Icon(Icons.logout, color: Colors.red),
-                title: Text(
-                  'LogOut',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                //  trailing: Icon(Icons.arrow_forward_ios_rounded),
+                ],
               ),
             ),
-          ),
-        ],
-      ),
+
+            SizedBox(height: size.height * 0.04),
+
+            // SETTINGS CARD
+            Container(
+              width: size.width * 0.9,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: cardColor,
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.lock, color: Colors.blueAccent),
+                    title: Text(
+                      'Change Password',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: textColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.language,
+                      color: Colors.blueAccent,
+                    ),
+                    title: Text(
+                      'Language',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: textColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded),
+                  ),
+                  const Divider(),
+
+                  // DARK MODE TOGGLE
+                  ListTile(
+                    leading: const Icon(
+                      Icons.nightlight_outlined,
+                      color: Colors.blueAccent,
+                    ),
+                    title: Text(
+                      'Dark Mode',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: textColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    trailing: Switch(
+                      value: themeController.isDark.value,
+                      onChanged: (value) {
+                        themeController.toggleTheme();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: size.height * 0.03),
+
+            // LOGOUT CARD
+            Container(
+              height: size.height * 0.09,
+              width: size.width * 0.9,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: cardColor,
+              ),
+              child: Center(
+                child: ListTile(
+                  leading: const Icon(Icons.logout, color: Colors.red),
+                  title: const Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

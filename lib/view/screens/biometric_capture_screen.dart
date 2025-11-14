@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vagrancy_beggars/controllers/getxController/biometric_controller.dart';
+import 'package:vagrancy_beggars/view/screens/personal_information_screen.dart';
 
 class BiometricCaptureScreen extends StatelessWidget {
   const BiometricCaptureScreen({super.key});
@@ -12,27 +13,40 @@ class BiometricCaptureScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("Step 1 of 4"),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        foregroundColor: Colors.black,
-        centerTitle: false,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(4),
-          child: LinearProgressIndicator(
-            value: 0.2,
-            backgroundColor: Colors.grey.shade300,
-            color: Colors.redAccent,
-          ),
-        ),
-      ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Obx(() {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 30),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "Step 1 of 4",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "20%",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+
+              // Progress bar
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: LinearProgressIndicator(
+                  value: 0.2,
+                  backgroundColor: Colors.grey[300],
+                  color: Colors.redAccent,
+                  minHeight: 6,
+                ),
+              ),
               const SizedBox(height: 10),
               const Text(
                 "Biometric Capture",
@@ -61,7 +75,7 @@ class BiometricCaptureScreen extends StatelessWidget {
                           height: 180,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Colors.black.withOpacity(0.06),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: CustomPaint(painter: _FaceOutlinePainter()),
@@ -169,14 +183,14 @@ class BiometricCaptureScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      "Place your thumb on the scanner when prompted.",
-                      style: TextStyle(color: Colors.black54, fontSize: 13),
-                    ),
                   ],
                 ),
               ),
-
+              const SizedBox(height: 10),
+              const Text(
+                "Place your thumb on the scanner when prompted.",
+                style: TextStyle(color: Colors.black54, fontSize: 13),
+              ),
               const SizedBox(height: 20),
 
               // Info
@@ -208,10 +222,10 @@ class BiometricCaptureScreen extends StatelessWidget {
                 height: 55,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.snackbar("Next", "Continue to the next step");
+                    Get.to(() => PersonalInformationScreen());
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0A0E60),
+                    backgroundColor: const Color(0xFF140D44),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),

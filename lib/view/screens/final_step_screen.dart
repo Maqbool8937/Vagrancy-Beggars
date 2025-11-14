@@ -128,7 +128,7 @@ class FinalStepScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1A0033),
+                    backgroundColor: const Color(0xFF140D44),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -148,6 +148,7 @@ class FinalStepScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
             ],
           ),
         ),

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:vagrancy_beggars/view/screens/nav_bar_screen.dart';
+import 'package:vagrancy_beggars/view/screens/settings_logout.dart';
 
 class ConfirmationScreen extends StatefulWidget {
   const ConfirmationScreen({super.key});
@@ -263,42 +267,52 @@ class _HomeScreenState extends State<ConfirmationScreen> {
 
                   SizedBox(height: mediaQuery.height * 0.05),
 
-                  Container(
-                    height: mediaQuery.height * 0.07,
-                    width: mediaQuery.width,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.07),
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Color(0xff140D44), width: 2),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Edit Profile',
-                        style: TextStyle(
-                          color: Color(0xff140D44),
-                          fontSize: 20,
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => SettingsLogout());
+                    },
+                    child: Container(
+                      height: mediaQuery.height * 0.07,
+                      width: mediaQuery.width,
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.07),
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(color: Color(0xff140D44), width: 2),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                            color: Color(0xff140D44),
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ),
                   ),
 
                   SizedBox(height: mediaQuery.height * 0.02),
-                  Container(
-                    height: mediaQuery.height * 0.07,
-                    width: mediaQuery.width,
-                    decoration: BoxDecoration(
-                      color: Color(0xff140D44),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => MainNavScreen());
+                    },
+                    child: Container(
+                      height: mediaQuery.height * 0.07,
+                      width: mediaQuery.width,
+                      decoration: BoxDecoration(
+                        color: Color(0xff140D44),
 
-                      borderRadius: BorderRadius.circular(30),
-                      //border: Border.all(color: Color(0xff140D44), width: 2),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Confirm',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
+                        borderRadius: BorderRadius.circular(30),
+                        //border: Border.all(color: Color(0xff140D44), width: 2),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Confirm',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),

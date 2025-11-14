@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:intl/intl.dart';
+import 'package:vagrancy_beggars/view/screens/match_found_screen.dart';
 
 class FacialScanController extends GetxController {
   CameraController? cameraController;
@@ -99,6 +100,7 @@ class FacialScanController extends GetxController {
                 onPressed: () {
                   Get.back(); // Close bottom sheet
                   // Navigate or perform next action
+                  Get.to(() => MatchFoundScreen());
 
                   Get.snackbar("Next", "Continue pressed");
                 },

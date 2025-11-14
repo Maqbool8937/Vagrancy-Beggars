@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vagrancy_beggars/view/screens/nav_bar_screen.dart';
 import 'package:vagrancy_beggars/view/widgets/custom_field.dart';
 
 class WelcomeBackScreen extends StatelessWidget {
@@ -127,7 +129,9 @@ class WelcomeBackScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 55,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => MainNavScreen());
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xffED1C24),
                           //  backgroundColor: Colors.redAccent,

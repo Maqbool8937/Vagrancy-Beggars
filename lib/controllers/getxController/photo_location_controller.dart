@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:vagrancy_beggars/view/screens/final_step_screen.dart';
 
 class PhotoLocationController extends GetxController {
   final picker = ImagePicker();
@@ -47,6 +48,6 @@ class PhotoLocationController extends GetxController {
     print("Photos selected: ${images.length}");
     print("Location: ${selectedLocation.value}");
     print("Address: ${address.value}");
-    Get.toNamed('/step4');
+    Get.to(() => FinalStepScreen());
   }
 }
